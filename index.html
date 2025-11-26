@@ -4,10 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script src="sricpt.js"></script>
     <title>To Do App</title>
 </head>
 <body>
-    
+    <!-- CONTAINER PRINCIPAL -->
+    <div class="container">
+        
+        <!-- CARD PRINCIPAL -->
+        <div class="todo-card">
+            
+            <!-- HEADER DO CARD -->
+            <div class="card-header">
+                <h1>Meus Afazeres</h1>
+                <p class="subtitle">Organize suas tarefas</p>
+            </div>
+
+            <!-- INPUT PARA NOVA TAREFA -->
+            <div class="input-group">
+                <input 
+                    type="text" 
+                    class="todo-input" 
+                    placeholder="Adicione uma nova tarefa..."
+                    id="taskInput"
+                >
+                <button class="btn btn-primary" id="addTaskBtn">
+                    Adicionar
+                </button>
+            </div>
+
+            <!-- FILTROS/TOGGLE -->
+            <div class="filter-group">
+                <label class="toggle">
+                    <input type="checkbox" class="toggle-checkbox" id="showCompleted">
+                    <span class="toggle-label">Mostrar concluídas</span>
+                </label>
+            </div>
+
+            <!-- LISTA DE TAREFAS -->
+            <div class="tasks-container">
+                <ul class="tasks-list" id="tasksList">
+                    <!-- Tarefas serão inseridas aqui via JavaScript -->
+                </ul>
+            </div>
+
+            <!-- FOOTER/INFORMAÇÕES -->
+            <div class="card-footer">
+                <p class="task-count" id="taskCount">0 tarefas pendentes</p>
+                <button class="btn btn-secondary" id="clearBtn">
+                    Limpar Concluídas
+                </button>
+            </div>
+
+        </div>
+        <!-- FIM DO CARD PRINCIPAL -->
+
+    </div>
+    <!-- FIM DO CONTAINER PRINCIPAL -->
+
+    <script src="script.js"></script>
 </body>
 </html>
