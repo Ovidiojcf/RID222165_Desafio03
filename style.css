@@ -14,7 +14,7 @@
     --background-color: #f3f4f6;
     --card-background: #ffffff;
     --text-dark: #1f2937;
-    --text-light: #6b7280;
+    --text-light: #B1BACB;  
     --border-color: #e5e7eb;
     
     /* Espaçamentos */
@@ -43,7 +43,7 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
                  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
                  sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: rgba(245, 249, 255, 1);
     background-attachment: fixed;
     color: var(--text-dark);
     min-height: 100vh;
@@ -63,6 +63,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: var(--spacing-md);
 }
 
 /* ========================================
@@ -73,8 +74,11 @@ body {
     background: var(--card-background);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-lg);
-    padding: var(--spacing-lg);
+    padding: 24px 32px;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
     animation: slideIn 0.3s ease-out;
 }
 
@@ -90,27 +94,15 @@ body {
 }
 
 /* ========================================
-   HEADER DO CARD
+   TITULO DO CARD
    ======================================== */
 
-.card-header {
-    text-align: center;
-    margin-bottom: var(--spacing-lg);
-    padding-bottom: var(--spacing-md);
-    border-bottom: 2px solid var(--border-color);
-}
-
-.card-header h1 {
-    font-size: 1.875rem;
-    color: var(--text-dark);
-    margin-bottom: var(--spacing-xs);
+.card-title {
+    font-family: 'Rubik', sans-serif;
+    color: rgba(17, 23, 94, 1);
+    font-size: 2rem;
     font-weight: 700;
-}
-
-.subtitle {
-    color: var(--text-light);
-    font-size: 0.9rem;
-    font-weight: 500;
+    margin: 0;
 }
 
 /* ========================================
@@ -119,8 +111,7 @@ body {
 
 .input-group {
     display: flex;
-    gap: var(--spacing-sm);
-    margin-bottom: var(--spacing-lg);
+    gap: 24px;
     flex-wrap: wrap;
 }
 
@@ -131,9 +122,15 @@ body {
     border: 2px solid var(--border-color);
     border-radius: var(--radius-md);
     font-size: 1rem;
+    font-weight: 400;
+    font-family: 'Rubik', sans-serif;
     transition: all 0.3s ease;
     background: var(--card-background);
     color: var(--text-dark);
+}
+
+.todo-tag {
+    flex: 0.8;
 }
 
 .todo-input:focus {
@@ -167,13 +164,13 @@ body {
 
 /* Botão Primário */
 .btn-primary {
-    background-color: var(--primary-color);
+    background-color: rgba(45, 112, 253, 1);
     color: white;
     box-shadow: var(--shadow-md);
 }
 
 .btn-primary:hover {
-    background-color: var(--primary-dark);
+    background-color: #2d70fd;
     transform: translateY(-2px);
     box-shadow: var(--shadow-lg);
 }
@@ -219,7 +216,7 @@ body {
 
 .filter-group {
     margin-bottom: var(--spacing-lg);
-    display: flex;
+    display: none;
     align-items: center;
 }
 
@@ -256,10 +253,11 @@ body {
     min-height: 200px;
     max-height: 400px;
     overflow-y: auto;
+    margin-left: 0;
+    margin-right: 0;
     margin-bottom: var(--spacing-lg);
     border-radius: var(--radius-md);
     background-color: #fafafa;
-    padding: var(--spacing-md);
 }
 
 .tasks-list {
@@ -269,7 +267,8 @@ body {
 /* Item da tarefa (será adicionado via JS) */
 .task-item {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    justify-content: space-between;
     gap: var(--spacing-md);
     padding: var(--spacing-md);
     background: white;
@@ -283,38 +282,102 @@ body {
     box-shadow: var(--shadow-sm);
 }
 
-.task-item.completed .task-text {
+.task-item.completed .task-title,
+.task-item.completed .task-tag,
+.task-item.completed .task-date {
     text-decoration: line-through;
     color: var(--text-light);
 }
 
-.task-checkbox {
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-    accent-color: var(--secondary-color);
-    flex-shrink: 0;
-}
-
-.task-text {
+.task-content {
     flex: 1;
-    color: var(--text-dark);
-    word-break: break-word;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-.task-delete {
-    padding: 0.25rem 0.5rem;
-    background-color: transparent;
-    color: var(--danger-color);
-    border: none;
-    cursor: pointer;
+.task-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.task-title {
+    font-family: 'Inter', sans-serif;
+    color: rgba(17, 23, 94, 1);
+    font-size: 1rem;
     font-weight: 600;
-    border-radius: var(--radius-sm);
-    transition: all 0.2s ease;
+    margin: 0;
 }
 
-.task-delete:hover {
-    background-color: rgba(239, 68, 68, 0.1);
+.task-footer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.task-tag {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-light);
+    font-size: 0.85rem;
+    font-weight: 500;
+    background-color: var(--card-background);
+    padding: 4px 8px;
+    border-radius: 16px;
+    border: 1px solid #B1BACB;
+    width: fit-content;
+    height: fit-content;
+    white-space: nowrap;
+}
+
+.task-date {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-light);
+    font-size: 0.8rem;
+    margin: 0;
+    margin-top: 4px;
+}
+
+.btn-complete {
+    width: 7.5625rem;
+    height: 2.75rem;
+    padding: 0.75rem 1.5rem;
+    background-color: rgba(45, 112, 253, 1);
+    color: white;
+    border: 1px solid rgba(45, 112, 253, 1);
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1.125rem;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.btn-complete:hover {
+    background-color: #2d70fd;
+    border-color: #2d70fd;
+    transform: translateY(-2px);
+}
+
+.btn-complete:active {
+    transform: translateY(0);
+}
+
+.task-item.completed .btn-complete {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+}
+
+.task-item.completed .btn-complete:hover {
+    background-color: #059669;
+    border-color: #059669;
 }
 
 /* ========================================
@@ -359,6 +422,43 @@ body {
 }
 
 /* ========================================
+   CONTADOR DE TAREFAS
+   ======================================== */
+
+.tasks-counter {
+    width: 100%;
+    border-radius: 1rem;
+    padding: 1.5rem 2rem;
+    gap: 1.5rem;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    opacity: 1;
+    border-top: 2px solid var(--border-color);
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+}
+
+.counter-text {
+    font-family: 'Inter', sans-serif;
+    color: rgba(17, 23, 94, 1);
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 0;
+    line-height: 1.5;
+}
+
+#completedCount {
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: rgba(45, 112, 253, 1);
+    margin-right: 0.5rem;
+}
+
+#completedLabel {
+    color: var(--text-dark);
+}
    RESPONSIVIDADE - TABLET E MOBILE
    ======================================== */
 
@@ -373,21 +473,32 @@ body {
         padding: var(--spacing-md);
     }
 
-    .todo-card {
-        padding: var(--spacing-md);
+    .tasks-counter {
+        justify-content: flex-end;
+        padding-right: 1rem;
     }
 
-    .card-header h1 {
+    .todo-card {
+        padding: 16px 20px;
+        gap: 16px;
+    }
+
+    .card-title {
         font-size: 1.5rem;
     }
 
     .input-group {
         flex-direction: column;
+        gap: 12px;
     }
 
     .todo-input,
     .btn {
         width: 100%;
+    }
+
+    .todo-tag {
+        flex: unset;
     }
 
     .card-footer {
@@ -403,6 +514,10 @@ body {
         max-height: 300px;
         padding: var(--spacing-sm);
     }
+
+    .task-item {
+        flex-wrap: wrap;
+    }
 }
 
 /* Mobile (480px e abaixo) */
@@ -417,36 +532,41 @@ body {
         padding: var(--spacing-sm);
     }
 
+    .tasks-counter {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 1rem 1rem;
+    }
+
     .todo-card {
-        padding: var(--spacing-md);
+        padding: 12px 16px;
+        gap: 12px;
         border-radius: var(--radius-md);
     }
 
-    .card-header {
-        margin-bottom: var(--spacing-md);
-        padding-bottom: var(--spacing-sm);
-    }
-
-    .card-header h1 {
+    .card-title {
         font-size: 1.25rem;
     }
 
-    .subtitle {
-        font-size: 0.85rem;
-    }
-
     .input-group {
-        margin-bottom: var(--spacing-md);
+        flex-direction: column;
+        gap: 10px;
     }
 
     .todo-input {
-        padding: var(--spacing-sm) 0.75rem;
+        padding: 0.75rem 0.75rem;
         font-size: 0.95rem;
+    }
+
+    .todo-tag {
+        flex: unset;
     }
 
     .btn {
         padding: 0.75rem 1rem;
         font-size: 0.9rem;
+        width: 100%;
     }
 
     .toggle-label {
@@ -456,6 +576,17 @@ body {
     .task-item {
         padding: var(--spacing-sm);
         gap: var(--spacing-sm);
+        flex-wrap: wrap;
+    }
+
+    .task-content {
+        width: 100%;
+    }
+
+    .btn-complete {
+        width: 100%;
+        padding: 0.75rem 1.5rem;
+        height: auto;
     }
 
     .tasks-container {
@@ -466,6 +597,7 @@ body {
 
     .card-footer {
         gap: var(--spacing-sm);
+        flex-direction: column;
     }
 
     .task-count {
