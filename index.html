@@ -10,16 +10,14 @@
     <title>To Do App</title>
 </head>
 <body>
-    <!-- CONTAINER PRINCIPAL -->
+
     <div class="container">
-        
-        <!-- CARD PRINCIPAL -->
+
         <div class="todo-card">
             
-            <!-- TITULO DO CARD -->
+            <!-- Titulo -->
             <h1 class="card-title">Board de tarefas</h1>
 
-            <!-- INPUT GROUP - NOME DA TAREFA E ETIQUETA -->
             <div class="input-group">
                 <input 
                     type="text" 
@@ -33,46 +31,30 @@
                     placeholder="Etiqueta"
                     id="tagInput"
                 >
+                <!--Botão de adicionar tarefa -->
                 <button class="btn btn-primary" id="addTaskBtn">
                     <img src="assets/+.svg" alt="botão de adicionar tarefa">
                 </button>
             </div>
 
-            <!-- LISTA DE TAREFAS -->
+            <!-- Tarefas -->
             <div class="tasks-container">
                 <ul class="tasks-list" id="tasksList">
-                    <li class="task-item">
-                        <div class="task-content">
-                            <div class="task-header">
-                                <h3 class="task-title">Nome da tarefa</h3>
-                            </div>
-                            <div class="task-footer">
-                                <span class="task-tag">Etiqueta</span>
-                                <p class="task-date">Criado em: 21/08/2025</p>
-                            </div>
-                        </div>
-                        <button class="btn btn-complete" id="completeBtn">
-                            Concluir
-                        </button>
-                    </li>
-                    
+                    <!-- Tarefas são renderizadas dinamicamente via JavaScript -->
                 </ul>
             </div>
 
-            <!-- CONTADOR DE TAREFAS -->
+            <!-- Contador -->
             <div class="tasks-counter">
                 <p class="counter-text">
                     <span id="completedCount">0</span> 
                     <span id="completedLabel">tarefa concluída</span>
                 </p>
             </div>
-            <!-- FIM DO CONTADOR -->
 
         </div>
-        <!-- FIM DO CARD PRINCIPAL -->
 
     </div>
-    <!-- FIM DO CONTAINER PRINCIPAL -->
 
     <script src="script.js"></script>
 </body>

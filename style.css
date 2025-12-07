@@ -46,11 +46,13 @@ body {
     background: rgba(245, 249, 255, 1);
     background-attachment: fixed;
     color: var(--text-dark);
-    min-height: 100vh;
+    min-height: auto;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     padding: var(--spacing-md);
+    padding-top: var(--spacing-lg);
+    padding-bottom: var(--spacing-lg);
 }
 
 /* ========================================
@@ -179,71 +181,9 @@ body {
     transform: translateY(0);
 }
 
-/* Botão Secundário */
-.btn-secondary {
-    background-color: var(--danger-color);
-    color: white;
-    box-shadow: var(--shadow-md);
-    font-size: 0.9rem;
-}
-
-.btn-secondary:hover {
-    background-color: #dc2626;
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
-}
-
-.btn-secondary:active {
-    transform: translateY(0);
-}
-
-/* Botão Terciário (para itens da lista) */
-.btn-tertiary {
-    background-color: transparent;
-    color: var(--text-light);
-    padding: 0.25rem 0.5rem;
-    font-size: 0.85rem;
-}
-
-.btn-tertiary:hover {
-    color: var(--danger-color);
-    background-color: rgba(239, 68, 68, 0.1);
-}
-
 /* ========================================
    TOGGLE/CHECKBOX CUSTOMIZADO
    ======================================== */
-
-.filter-group {
-    margin-bottom: var(--spacing-lg);
-    display: none;
-    align-items: center;
-}
-
-.toggle {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-sm);
-    cursor: pointer;
-    user-select: none;
-}
-
-.toggle-checkbox {
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-    accent-color: var(--primary-color);
-}
-
-.toggle-label {
-    color: var(--text-dark);
-    font-weight: 500;
-    font-size: 0.95rem;
-}
-
-.toggle-checkbox:hover {
-    filter: brightness(0.95);
-}
 
 /* ========================================
    CONTAINER DE TAREFAS
@@ -251,8 +191,7 @@ body {
 
 .tasks-container {
     min-height: 200px;
-    max-height: 400px;
-    overflow-y: auto;
+    overflow-y: visible;
     margin-left: 0;
     margin-right: 0;
     margin-bottom: var(--spacing-lg);
@@ -267,7 +206,7 @@ body {
 /* Item da tarefa (será adicionado via JS) */
 .task-item {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
     gap: var(--spacing-md);
     padding: var(--spacing-md);
@@ -370,55 +309,29 @@ body {
     transform: translateY(0);
 }
 
-.task-item.completed .btn-complete {
-    background-color: var(--secondary-color);
-    border-color: var(--secondary-color);
-}
-
-.task-item.completed .btn-complete:hover {
-    background-color: #059669;
-    border-color: #059669;
-}
-
-/* ========================================
-   FOOTER DO CARD
-   ======================================== */
-
-.card-footer {
+/* Botão apenas com ícone (tarefa concluída) */
+.btn-complete.icon-only {
+    background-color: transparent !important;
+    background: transparent !important;
+    border: none !important;
+    width: auto;
+    height: auto;
+    padding: 0;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding-top: var(--spacing-md);
-    border-top: 2px solid var(--border-color);
-    flex-wrap: wrap;
-    gap: var(--spacing-md);
+    justify-content: center;
 }
 
-.task-count {
-    color: var(--text-light);
-    font-size: 0.9rem;
-    font-weight: 500;
+.btn-complete.icon-only:hover {
+    transform: scale(1.15);
+    background-color: transparent !important;
+    background: transparent !important;
 }
 
-/* ========================================
-   SCROLLBAR CUSTOMIZADO
-   ======================================== */
-
-.tasks-container::-webkit-scrollbar {
-    width: 8px;
-}
-
-.tasks-container::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-.tasks-container::-webkit-scrollbar-thumb {
-    background: var(--primary-light);
-    border-radius: 4px;
-}
-
-.tasks-container::-webkit-scrollbar-thumb:hover {
-    background: var(--primary-color);
+.btn-complete.icon-only:active {
+    transform: scale(0.95);
+    background-color: transparent !important;
+    background: transparent !important;
 }
 
 /* ========================================
@@ -481,42 +394,6 @@ body {
     .todo-card {
         padding: 16px 20px;
         gap: 16px;
-    }
-
-    .card-title {
-        font-size: 1.5rem;
-    }
-
-    .input-group {
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    .todo-input,
-    .btn {
-        width: 100%;
-    }
-
-    .todo-tag {
-        flex: unset;
-    }
-
-    .card-footer {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .btn-secondary {
-        width: 100%;
-    }
-
-    .tasks-container {
-        max-height: 300px;
-        padding: var(--spacing-sm);
-    }
-
-    .task-item {
-        flex-wrap: wrap;
     }
 }
 
@@ -590,19 +467,17 @@ body {
     }
 
     .tasks-container {
-        max-height: 250px;
+        min-height: 150px;
+        overflow-y: visible;
         padding: var(--spacing-sm);
         margin-bottom: var(--spacing-md);
     }
 
-    .card-footer {
-        gap: var(--spacing-sm);
+    .tasks-counter {
         flex-direction: column;
-    }
-
-    .task-count {
-        font-size: 0.85rem;
-        width: 100%;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 1rem 1rem;
     }
 }
 
